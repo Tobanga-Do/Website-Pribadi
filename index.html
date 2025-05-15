@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"> <!-- Encoding karakter UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" > <!-- Responsif di device mobile -->
+  <title>Profil Rasmon Ramadhan</title>
+
+  <!-- Import Google Fonts: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" >
+
+  <!-- Import FontAwesome untuk ikon -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  >
+
+  <style>
+    /* Styling body dan font utama */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #e0f0ff, #ffffff);
+      color: #333;
+    }
+
+    /* Header: bagian atas profil dengan background biru */
+    header {
+      background-color: #0073b1;
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      position: relative;
+      z-index: 1001;
+    }
+
+    /* Foto profil bulat dengan border putih dan bayangan */
+    header img {
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border: 4px solid white;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+    header img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Navbar container */
+    nav {
+  background-color: #005f91;
+  padding: 1rem;
+  display: flex;               /* aktifkan flexbox */
+  justify-content: center;     /* posisikan item di tengah */
+  gap: 2rem;                  /* jarak antar link */
+  position: relative;
+  z-index: 1000;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.3s ease;
+}
+
+    /* Navbar links container */
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    /* Link navbar: warna putih dan spacing */
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.3s ease;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background-color: #fff;
+      transition: width 0.3s ease;
+    }
+    nav a:hover::after,
+    nav a.active::after {
+      width: 100%;
+    }
+
+    nav a.active {
+      color: #e0e0e0;
+    }
+
+    /* Hamburger menu button (hidden on desktop) */
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      color: white;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Container utama untuk konten deskripsi */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 1rem 2rem 1rem;
+      overflow: hidden;
+      position: relative;
+      min-height: 150px;
+    }
+
+    section {
+      position: relative;
+      opacity: 0;
+      transform: translateY(-30px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      pointer-events: none;
+      height: 0;
+      overflow: hidden;
+    }
+    section.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+      height: auto;
+    }
+
+    h2 {
+      color: #0073b1;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 0.3rem;
+      margin-top: 0;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+    }
+
+    .contact a {
+      color: #0073b1;
+      text-decoration: none;
+    }
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
+    /* Media query untuk tampilan mobile */
+    @media (max-width: 600px) {
+      /* Tampilkan hamburger dan sembunyikan link navbar awalnya */
+      .hamburger {
+        display: block;
+      }
+      .nav-links {
+        flex-direction: column;
+        background-color: #005f91;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.3s ease;
+      }
+      /* Saat menu aktif, beri max-height besar supaya tampil */
+      .nav-links.active {
+        max-height: 500px; /* cukup besar untuk muat semua link */
+      }
+      nav a {
+        padding: 1rem;
+        border-top: 1px solid rgba(255,255,255,0.2);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="Poto_Profil.jpg" alt="Foto Profil" >
+    <h1>Rasmon Ramadhan</h1>
+    <p class="job-title">Staf Keuangan di PT Wika Beton</p>
+  </header>
+
+  <nav>
+    <div class="nav-inner">
+      <!-- Hamburger icon untuk mobile -->
+      <button type="button" class="hamburger" aria-label="Toggle navigation menu">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Link navbar -->
+      <div class="nav-links">
+        <a onclick="showSection('tentang')" href="javascript:void(0)">Tentang</a>
+        <a onclick="showSection('pengalaman')" href="javascript:void(0)">Pengalaman</a>
+        <a onclick="showSection('pendidikan')" href="javascript:void(0)">Pendidikan</a>
+        <a onclick="showSection('keahlian')" href="javascript:void(0)">Keahlian</a>
+        <a onclick="showSection('kontak')" href="javascript:void(0)">Kontak</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <section id="tentang">
+      <h2>Tentang Saya</h2>
+      <p>Profesional di bidang keuangan dengan pengalaman lebih dari 2 tahun di sektor konstruksi. Terbiasa mengelola piutang, membuat invoice, follow-up pembayaran, dan analisis laporan keuangan.</p>
+    </section>
+
+    <section id="pengalaman">
+      <h2>Pengalaman Kerja</h2>
+      <p><strong>Staf Keuangan</strong> – PT Wika Beton (2019 – Sekarang)<br >
+        Mengelola tagihan dan piutang pelanggan, membuat invoice, follow-up pembayaran, dan mengurus perpajakan.
+      </p>
+    </section>
+
+    <section id="pendidikan">
+      <h2>Pendidikan</h2>
+      <p>Sarjana Ekonomi – Universitas Andalas (2015 – 2019)</p>
+    </section>
+
+    <section id="keahlian">
+      <h2>Keahlian</h2>
+      <ul>
+        <li>Microsoft Excel (PivotTable, Dashboard)</li>
+        <li>Manajemen Piutang &amp; Tagihan</li>
+        <li>Dasar-dasar SQL &amp; Python</li>
+        <li>Google Sheets &amp; Automasi Data</li>
+      </ul>
+    </section>
+
+    <section id="kontak" class="contact">
+      <h2>Kontak</h2>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:rasmonramadhan@gmail.com">rasmonramadhan@gmail.com</a></p>
+      <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/rasmonramadhan/" target="_blank" rel="noopener noreferrer">linkedin.com/in/rasmonramadhan</a></p>
+      <p><i class="fab fa-whatsapp"></i> +62-812-xxxx-xxxx</p>
+    </section>
+  </div>
+
+  <script>
+    function showSection(id) {
+      // Tampilkan section yang dipilih, sembunyikan yang lain
+      document.querySelectorAll('section').forEach(section => {
+        section.classList.toggle('active', section.id === id);
+      });
+      // Set active pada navbar link
+      document.querySelectorAll('nav a').forEach(link => {
+        link.classList.toggle('active', link.textContent.toLowerCase() === id);
+      });
+
+      // Jika di mobile, setelah klik link, otomatis tutup menu
+      const navLinks = document.querySelector('.nav-links');
+      if(window.innerWidth <= 600) {
+        navLinks.classList.remove('active');
+      }
+    }
+
+    // Tampilkan section 'tentang' saat halaman dibuka
+    window.onload = () => {
+      showSection('tentang');
+
+      // Setup event listener tombol hamburger
+      const hamburger = document.querySelector('.hamburger');
+      const navLinks = document.querySelector('.nav-links');
+
+      hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+      });
+    }
+  </script>
+</body>
+</html>
